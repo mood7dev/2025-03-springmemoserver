@@ -4,37 +4,43 @@ import com.green.memoserver.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-`
-import java.beans.ConstructorProperties;
+
 import java.util.List;
 
-//rest api
 @RestController
-//자동 생성
 @RequiredArgsConstructor
-//공통 url 정의
 @RequestMapping("api/memo")
 @Slf4j
 public class MemoController {
+
     private final MemoService memoService;
 
+    // 메모 저장
     @PostMapping
-    public String saveMemo(@RequestBody MemoPostReq req) {
-        log.info("req={}", req);
-        int result = memoService.save(req);
-        return result == 1 ? "저장 성공" : "저장 실패";
+    public int saveMemo(@RequestBody MemoPostReq p) {
+        log.info("save={}", p);
+        return memoService.save(p);
     }
 
+    // 메모 수정
     @PutMapping
-    public String updateMemo(@RequestBody MemoPutReq req) {
-        log.info("req={}", req);
-        return "수정완료";
+    public int updateMemo(@RequestBody MemoPutReq p) {
+        log.info("modify={}", p);
+        return memoService.modify(p);
     }
 
+    // 메모 삭제
     @DeleteMapping
-    public String deleteMemo(@RequestParam(name = "memo_id", required = false) int memoId) {
-        log.info("memoId={}", memoId);
-        return "삭제완료";
+    public int deleteMemoByQuery(@RequestParam(name = "memo_id") int memoId) {
+        log.info("delete={}", memoId);
+        return memoService.delete(memoId);
+    }
+
+    // 메모 리스트 조회
+    @GetMapping
+    public List<MemoGetRes> getMemos(@ModelAttribute MemoGetReq p) {
+        log.info("findAll={}", p);
+        return memoService.findAll(p);
     }
 
     // 메모 하나 조회
@@ -42,18 +48,5 @@ public class MemoController {
     public MemoGetOneRes getMemo(@PathVariable int id) {
         log.info("findById={}", id);
         return memoService.findById(id);
-    }
-
-    // 메모 리스트 조회
-    @GetMapping
-    public List<MemoGetRes> getMemos(@ModelAttribute MemoGetReq req) {
-        log.info("req={}", req);
-        return memoService.finAll(req);
-    }
-
-    @DeleteMapping("{id}")
-    public String deleteMemos(@PathVariable int id) {
-        log.info("id={}", id);
-        return "삭제완료";
     }
 }

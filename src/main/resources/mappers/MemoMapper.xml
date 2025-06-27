@@ -4,12 +4,28 @@
 
 <mapper namespace="com.green.memoserver.MemoMapper">
 
+    <!-- 메모저장 -->
     <insert id="save">
         INSERT INTO memo
         SET title = #{title}
         , content = #{ctnts}
     </insert>
 
+    <!-- 메모 수정 -->
+    <update id="modify">
+        UPDATE memo
+        SET title = #{title},
+        content = #{ctnts}
+        WHERE id = #{memoId}
+    </update>
+
+    <!-- 메모 삭제 -->
+    <delete id="delete">
+        DELETE FROM memo
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 메모 리스트 조회 -->
     <select id="findAll" resultType="com.green.memoserver.model.MemoGetRes">
         SELECT id, title, content, created_at
         FROM memo
@@ -20,16 +36,13 @@
         ORDER BY id DESC
     </select>
 
+    <!-- 메모 하나 조회 -->
     <select id="findById">
         SELECT *
         FROM memo
         Where id = #{id}
     </select>
 
-    <delete id="deleteById">
-        DELETE FROM memo
-        WHERE id = #{id}
-    </delete>
 </mapper>
 
 

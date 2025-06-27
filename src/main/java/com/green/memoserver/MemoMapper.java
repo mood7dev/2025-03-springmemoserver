@@ -1,9 +1,6 @@
 package com.green.memoserver;
 
-import com.green.memoserver.model.MemoGetOneRes;
-import com.green.memoserver.model.MemoGetReq;
-import com.green.memoserver.model.MemoGetRes;
-import com.green.memoserver.model.MemoPostReq;
+import com.green.memoserver.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,9 +8,12 @@ import java.util.List;
 
 @Mapper
 public interface MemoMapper {
-    int save(MemoPostReq P);
-    List<MemoGetRes> findAll(MemoGetReq p);
-    MemoGetOneRes findById(int id);
+    int save(MemoPostReq P); // 메모 저장
+    int modify(MemoPutReq p); // 메모 수정
+    int delete(int id); // 메모 삭제
+    List<MemoGetRes> findAll(MemoGetReq p); // 메모 리스트 조회
+    MemoGetOneRes findById(int id); // 메모 하나 조회
+
 }
 
 // 인터페이스 이름 변경

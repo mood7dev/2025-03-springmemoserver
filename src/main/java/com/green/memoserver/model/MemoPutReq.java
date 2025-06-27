@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MemoPutReq {
-    private String memoID;
+    private String memoId;
     private String title;
     private String ctnts;
 }
