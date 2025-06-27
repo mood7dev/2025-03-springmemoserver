@@ -1,5 +1,6 @@
 package com.green.memoserver;
 
+import com.green.memoserver.Config.model.ResultResponse;
 import com.green.memoserver.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,36 +18,42 @@ public class MemoController {
 
     // 메모 저장
     @PostMapping
-    public int saveMemo(@RequestBody MemoPostReq p) {
+    public ResultResponse<Integer> saveMemo(@RequestBody MemoPostReq p) {
         log.info("save={}", p);
-        return memoService.save(p);
+        int result = memoService.save(p);
+        return new ResultResponse<>("저장 성공", result);
     }
 
     // 메모 수정
     @PutMapping
-    public int updateMemo(@RequestBody MemoPutReq p) {
+    public ResultResponse<Integer> updateMemo(@RequestBody MemoPutReq p) {
         log.info("modify={}", p);
-        return memoService.modify(p);
+        int result = memoService.modify(p);
+        return new ResultResponse<>("수정 성공", result);
     }
 
     // 메모 삭제
     @DeleteMapping
-    public int deleteMemoByQuery(@RequestParam(name = "memo_id") int memoId) {
+    public ResultResponse<Integer> delMemo(@RequestParam(name = "memo_id") int memoId) {
         log.info("delete={}", memoId);
-        return memoService.delete(memoId);
+        int result = memoService.delete(memoId);
+        return new ResultResponse<>("삭제 성공", result);
     }
 
     // 메모 리스트 조회
     @GetMapping
-    public List<MemoGetRes> getMemos(@ModelAttribute MemoGetReq p) {
+    public ResultResponse<List<MemoGetRes>> getMemo(@ModelAttribute MemoGetReq p) {
         log.info("findAll={}", p);
-        return memoService.findAll(p);
+        List<MemoGetRes> result = memoService.findAll(p);
+        String message = String.format("rows: %d", result.size());
+        return new ResultResponse<>(message, result);
     }
 
     // 메모 하나 조회
     @GetMapping("{id}")
-    public MemoGetOneRes getMemo(@PathVariable int id) {
+    public  ResultResponse<MemoGetOneRes> getMemo(@PathVariable int id) {
         log.info("findById={}", id);
-        return memoService.findById(id);
+        MemoGetOneRes result = memoService.findById(id);
+        return new ResultResponse<>("조회 성공", result);
     }
 }

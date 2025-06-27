@@ -12,8 +12,8 @@ public class MemoService {
     private final MemoMapper memoMapper;
 
     // 메모 저장
-    public int save(MemoPostReq req) {
-        return memoMapper.save(req);
+    public int save(MemoPostReq p) {
+        return memoMapper.save(p);
     }
 
     // 메모 수정
@@ -27,8 +27,8 @@ public class MemoService {
     }
 
     // 메모 리스트 조회
-    public List<MemoGetRes> findAll(MemoGetReq req) {
-        return memoMapper.findAll(req);
+    public List<MemoGetRes> findAll(MemoGetReq p) {
+        return memoMapper.findAll(p);
     }
 
     // 메모 하나 조회
