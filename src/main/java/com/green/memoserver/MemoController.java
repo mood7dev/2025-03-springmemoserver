@@ -42,7 +42,7 @@ public class MemoController {
 
     // 메모 리스트 조회
     @GetMapping
-    public ResultResponse<List<MemoGetRes>> getMemo(@ModelAttribute MemoGetReq p) {
+    public ResultResponse<List<MemoGetRes>> getMemoList(@ModelAttribute MemoGetReq p) {
         log.info("findAll={}", p);
         List<MemoGetRes> result = memoService.findAll(p);
         String message = String.format("rows: %d", result.size());
@@ -51,9 +51,12 @@ public class MemoController {
 
     // 메모 하나 조회
     @GetMapping("{id}")
-    public  ResultResponse<MemoGetOneRes> getMemo(@PathVariable int id) {
+    public  ResultResponse<MemoGetOneRes> getMemo(@RequestParam(name = "id") int id) {
         log.info("findById={}", id);
         MemoGetOneRes result = memoService.findById(id);
         return new ResultResponse<>("조회 성공", result);
     }
 }
+
+
+
