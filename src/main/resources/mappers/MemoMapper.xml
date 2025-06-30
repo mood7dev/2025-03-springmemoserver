@@ -30,7 +30,8 @@
         SELECT id, title, content, created_at
         FROM memo
         <if test="searchText != null and searchText != '' ">
-            WHERE title LIKE CONCAT('%', #{searchText}, '%')
+            <!-- <bind name="pattern" value="'%' + _parameter.getSearchText() + '%' /> -->
+            WHERE title LIKE CONCAT('%', #{searchText}, '%') <!-- 버전업 버젼 : WHERE title LIKE #{PATTERN} -->
             OR content LIKE CONCAT('%', #{searchText}, '%')
         </if>
         ORDER BY id DESC

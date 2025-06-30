@@ -51,7 +51,7 @@ public class MemoController {
 
     // 메모 하나 조회
     @GetMapping("{id}")
-    public  ResultResponse<MemoGetOneRes> getMemo(@RequestParam(name = "id") int id) {
+    public ResultResponse<MemoGetOneRes> getMemo(@PathVariable int id) {
         log.info("findById={}", id);
         MemoGetOneRes result = memoService.findById(id);
         return new ResultResponse<>("조회 성공", result);
