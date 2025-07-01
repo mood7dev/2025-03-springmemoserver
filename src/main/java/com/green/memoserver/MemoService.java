@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@RequiredArgsConstructor //생성자를 자동 생성
 public class MemoService {
     private final MemoMapper memoMapper;
 

@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
+@RestController // RESTful 웹 서비스를 만들 때 사용하는 컨트롤러
+@RequiredArgsConstructor //생성자를 자동 생성
 @RequestMapping("api/memo")
-@Slf4j
+@Slf4j //로그 출력
 public class MemoController {
 
     private final MemoService memoService;
