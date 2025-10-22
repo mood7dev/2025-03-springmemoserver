@@ -1,6 +1,6 @@
 package com.green.memoserver;
 
-import com.green.memoserver.Config.model.ResultResponse;
+import com.green.memoserver.config.model.ResultResponse;
 import com.green.memoserver.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

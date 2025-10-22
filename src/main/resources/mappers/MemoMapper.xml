@@ -8,15 +8,15 @@
     <insert id="save">
         INSERT INTO memo
         SET title = #{title}
-        , content = #{ctnts}
+        , content = #{content}
     </insert>
 
     <!-- 메모 수정 -->
     <update id="modify">
         UPDATE memo
         SET title = #{title},
-        content = #{ctnts}
-        WHERE id = #{memoId}
+        content = #{content}
+        WHERE id = #{id}
     </update>
 
     <!-- 메모 삭제 -->

@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 public class MemoPostReq {
     private String title;
-    private String ctnts;
+    private String content;
 }
